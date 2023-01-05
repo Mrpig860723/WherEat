@@ -6,5 +6,8 @@ target 'WherEat' do
   use_frameworks!
 
   # Pods for WherEat
-
+  pod 'Alamofire','~> 5.0'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  pod 'Kingfisher'
 end
