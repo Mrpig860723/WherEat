@@ -21,8 +21,14 @@
 		76A878E82966B2C400595B7E /* RecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A878E62966B2C400595B7E /* RecordViewController.xib */; };
 		76A878EB2966B2DC00595B7E /* RestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A878E92966B2DC00595B7E /* RestViewController.swift */; };
 		76A878EC2966B2DC00595B7E /* RestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A878EA2966B2DC00595B7E /* RestViewController.xib */; };
-		76A878F02966B38100595B7E /* NavigateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A878EE2966B38100595B7E /* NavigateViewController.swift */; };
-		76A878F12966B38100595B7E /* NavigateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A878EF2966B38100595B7E /* NavigateViewController.xib */; };
+		76A878F6296A7AEA00595B7E /* RestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A878F4296A7AEA00595B7E /* RestTableViewCell.swift */; };
+		76A878F7296A7AEA00595B7E /* RestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A878F5296A7AEA00595B7E /* RestTableViewCell.xib */; };
+		76A878FA296BEA5D00595B7E /* RestMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A878F8296BEA5D00595B7E /* RestMapViewController.swift */; };
+		76A878FB296BEA5D00595B7E /* RestMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A878F9296BEA5D00595B7E /* RestMapViewController.xib */; };
+		76A878FE296D39A400595B7E /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A878FC296D39A400595B7E /* RecordTableViewCell.swift */; };
+		76A878FF296D39A400595B7E /* RecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76A878FD296D39A400595B7E /* RecordTableViewCell.xib */; };
+		76A87901296D48D300595B7E /* ObjectSavableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A87900296D48D300595B7E /* ObjectSavableError.swift */; };
+		76A87903296D493100595B7E /* SaveItemVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A87902296D493100595B7E /* SaveItemVO.swift */; };
 		D889F2650C460B54F76B8EC6 /* Pods_WherEat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2DB2F297FA75DD8E51BAF73 /* Pods_WherEat.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,8 +49,14 @@
 		76A878E62966B2C400595B7E /* RecordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordViewController.xib; sourceTree = "<group>"; };
 		76A878E92966B2DC00595B7E /* RestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestViewController.swift; sourceTree = "<group>"; };
 		76A878EA2966B2DC00595B7E /* RestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestViewController.xib; sourceTree = "<group>"; };
-		76A878EE2966B38100595B7E /* NavigateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateViewController.swift; sourceTree = "<group>"; };
-		76A878EF2966B38100595B7E /* NavigateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigateViewController.xib; sourceTree = "<group>"; };
+		76A878F4296A7AEA00595B7E /* RestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTableViewCell.swift; sourceTree = "<group>"; };
+		76A878F5296A7AEA00595B7E /* RestTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestTableViewCell.xib; sourceTree = "<group>"; };
+		76A878F8296BEA5D00595B7E /* RestMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestMapViewController.swift; sourceTree = "<group>"; };
+		76A878F9296BEA5D00595B7E /* RestMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestMapViewController.xib; sourceTree = "<group>"; };
+		76A878FC296D39A400595B7E /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		76A878FD296D39A400595B7E /* RecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordTableViewCell.xib; sourceTree = "<group>"; };
+		76A87900296D48D300595B7E /* ObjectSavableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSavableError.swift; sourceTree = "<group>"; };
+		76A87902296D493100595B7E /* SaveItemVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveItemVO.swift; sourceTree = "<group>"; };
 		76FC5DC1EF30475FBF1EBBA8 /* Pods-WherEat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WherEat.release.xcconfig"; path = "Target Support Files/Pods-WherEat/Pods-WherEat.release.xcconfig"; sourceTree = "<group>"; };
 		BBFB2BF69AC6F8A0C74FDDDC /* Pods-WherEat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WherEat.debug.xcconfig"; path = "Target Support Files/Pods-WherEat/Pods-WherEat.debug.xcconfig"; sourceTree = "<group>"; };
 		C2DB2F297FA75DD8E51BAF73 /* Pods_WherEat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WherEat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,7 +106,6 @@
 		763D82F72965635200BFAB63 /* WherEat */ = {
 			isa = PBXGroup;
 			children = (
-				76A878ED2966B35C00595B7E /* NavigateView */,
 				76A878DA29666DAA00595B7E /* RecordView */,
 				76A878D929666D8500595B7E /* RestView */,
 				763D82F82965635200BFAB63 /* AppDelegate.swift */,
@@ -122,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				76A878E32966971500595B7E /* RestaurantVO.swift */,
+				76A87900296D48D300595B7E /* ObjectSavableError.swift */,
+				76A87902296D493100595B7E /* SaveItemVO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -129,8 +142,11 @@
 		76A878D929666D8500595B7E /* RestView */ = {
 			isa = PBXGroup;
 			children = (
+				76A878F2296A7A9500595B7E /* Cell */,
 				76A878E92966B2DC00595B7E /* RestViewController.swift */,
 				76A878EA2966B2DC00595B7E /* RestViewController.xib */,
+				76A878F8296BEA5D00595B7E /* RestMapViewController.swift */,
+				76A878F9296BEA5D00595B7E /* RestMapViewController.xib */,
 			);
 			path = RestView;
 			sourceTree = "<group>";
@@ -138,19 +154,29 @@
 		76A878DA29666DAA00595B7E /* RecordView */ = {
 			isa = PBXGroup;
 			children = (
+				76A878F3296A7AB800595B7E /* Cell */,
 				76A878E52966B2C400595B7E /* RecordViewController.swift */,
 				76A878E62966B2C400595B7E /* RecordViewController.xib */,
 			);
 			path = RecordView;
 			sourceTree = "<group>";
 		};
-		76A878ED2966B35C00595B7E /* NavigateView */ = {
+		76A878F2296A7A9500595B7E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				76A878EE2966B38100595B7E /* NavigateViewController.swift */,
-				76A878EF2966B38100595B7E /* NavigateViewController.xib */,
+				76A878F4296A7AEA00595B7E /* RestTableViewCell.swift */,
+				76A878F5296A7AEA00595B7E /* RestTableViewCell.xib */,
 			);
-			path = NavigateView;
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		76A878F3296A7AB800595B7E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				76A878FC296D39A400595B7E /* RecordTableViewCell.swift */,
+				76A878FD296D39A400595B7E /* RecordTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		9AB9D421200925F8EB2242F6 /* Frameworks */ = {
@@ -222,10 +248,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76A878F7296A7AEA00595B7E /* RestTableViewCell.xib in Resources */,
 				763D83052965635400BFAB63 /* LaunchScreen.storyboard in Resources */,
+				76A878FF296D39A400595B7E /* RecordTableViewCell.xib in Resources */,
 				763D83022965635400BFAB63 /* Assets.xcassets in Resources */,
 				76A878EC2966B2DC00595B7E /* RestViewController.xib in Resources */,
-				76A878F12966B38100595B7E /* NavigateViewController.xib in Resources */,
+				76A878FB296BEA5D00595B7E /* RestMapViewController.xib in Resources */,
 				763D83002965635200BFAB63 /* Main.storyboard in Resources */,
 				76A878E82966B2C400595B7E /* RecordViewController.xib in Resources */,
 			);
@@ -299,11 +327,15 @@
 			files = (
 				763D82FD2965635200BFAB63 /* ViewController.swift in Sources */,
 				76A878EB2966B2DC00595B7E /* RestViewController.swift in Sources */,
+				76A87903296D493100595B7E /* SaveItemVO.swift in Sources */,
+				76A878FE296D39A400595B7E /* RecordTableViewCell.swift in Sources */,
 				76A878E0296681EB00595B7E /* DataManager.swift in Sources */,
-				76A878F02966B38100595B7E /* NavigateViewController.swift in Sources */,
 				76A878E42966971500595B7E /* RestaurantVO.swift in Sources */,
+				76A878FA296BEA5D00595B7E /* RestMapViewController.swift in Sources */,
 				76A878E72966B2C400595B7E /* RecordViewController.swift in Sources */,
+				76A87901296D48D300595B7E /* ObjectSavableError.swift in Sources */,
 				763D82F92965635200BFAB63 /* AppDelegate.swift in Sources */,
+				76A878F6296A7AEA00595B7E /* RestTableViewCell.swift in Sources */,
 				76A878DC2966754D00595B7E /* SystemUtil.swift in Sources */,
 				76A878DE2966758100595B7E /* AlertUtil.swift in Sources */,
 				763D82FB2965635200BFAB63 /* SceneDelegate.swift in Sources */,
@@ -383,7 +415,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -438,7 +470,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

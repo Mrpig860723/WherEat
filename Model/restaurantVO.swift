@@ -13,5 +13,5 @@ struct RestaurantVO: Codable {
     var rating: Double = 0.0
     var name: String = ""
     var vicinity: String = ""
-    
+    var photo: String = ""
 }

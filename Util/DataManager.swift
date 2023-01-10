@@ -32,6 +32,10 @@ class DataManager: NSObject {
                         vo.lat = location["lat"] as? CGFloat ?? 0.00
                         vo.lng = location["lng"] as? CGFloat ?? 0.00
                     }
+                    if let photos = item["photos"] as? [NSDictionary],
+                       let photo = photos[0] as? [String:Any]{
+                        vo.photo = photo["photo_reference"] as? String ?? ""
+                    }
                     proAry.append(vo)
                 }
                
@@ -41,5 +45,10 @@ class DataManager: NSObject {
             }
             
         })
+    }
+    
+    func returnPhoto(photo: String) -> String {
+        let result = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1024&photoreference=\(photo)&key=\(key)"
+        return result
     }
 }
