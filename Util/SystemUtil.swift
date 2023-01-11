@@ -208,3 +208,22 @@ public extension UIDevice {
     static let isiPhoneX = UIDevice.modelName.contains("iPhone X") ? true : false
     static let isiPad = UIDevice.modelName.contains("iPad") ? true : false
 }
+
+public extension UIViewController {
+    
+    func setBackBtn() {
+        let backBtn = UIButton()
+        backBtn.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        backBtn.setTitle("返回", for: .normal)
+        backBtn.setTitleColor(.blue, for: .normal)
+        backBtn.addTarget(self, action: #selector(tabBack), for: .touchUpInside)
+        let leftBarButtonItem = UIBarButtonItem(customView: backBtn)
+        
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
+    
+    @objc func tabBack() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+}

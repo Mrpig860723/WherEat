@@ -23,11 +23,12 @@ class ViewController: UIViewController {
     var navigateBtn = UIButton()
     var restImgV = UIImageView()
     var restNameV = UIView()
+    var restNameImgV = UIImageView()
     var restNameLb = UILabel()
     var loadV = UIView()
     var loadRollV = UIView()
     var activityV = UIActivityIndicatorView()
-    
+    var backGroundImg = UIImageView()
     var arrRestaurant :[RestaurantVO] = []
     var ranInt: Int = 0
     var photoUrl: URL!
@@ -42,6 +43,7 @@ class ViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         restImgV.contentMode = .scaleAspectFit
+        
         if UserDefaults.standard.value(forKey: "Item") != nil {
             do {
                 saveItemArr = try UserDefaults.standard.getObject(forKey: "Item", castTo: [SaveItemVO].self)
@@ -56,7 +58,14 @@ class ViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        importRestBtn.frame = CGRect(x: UIScreen.SIZE.width - 150, y: UIScreen.SAFE_AREA_TOP, width: 150, height: 80)
+        
+        navigationController?.isNavigationBarHidden = true
+//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainBackGround")!)
+        backGroundImg.frame = CGRect(x: 0, y: 0, width: UIScreen.WIDTH, height: UIScreen.HEIGHT)
+        backGroundImg.image = UIImage(named: "mainBackGround")
+        self.view.addSubview(backGroundImg)
+        
+        importRestBtn.frame = CGRect(x: UIScreen.WIDTH - 150, y: 44, width: 150, height: 50)
         importRestBtn.setTitle("匯入附近餐廳", for: .normal)
         importRestBtn.setTitleColor(.black, for: .normal)
         importRestBtn.titleLabel?.font.withSize(20)
@@ -77,18 +86,18 @@ class ViewController: UIViewController {
         
         restImgV.frame = CGRect(x: UIScreen.main.bounds.midX - UIScreen.WIDTH * 2 / 5, y: UIScreen.main.bounds.midY - UIScreen.HEIGHT / 4 , width: UIScreen.WIDTH * 4 / 5, height: UIScreen.HEIGHT / 4)
         restImgV.image = UIImage(named: "noRestaurant")
-        
+        restImgV.layer.borderColor = UIColor.black.cgColor
+        restImgV.layer.borderWidth = 5
+        restImgV.layer.cornerRadius = 25
+        restImgV.backgroundColor = .white
         self.view.addSubview(restImgV)
         
-        navigateBtn.frame = restImgV.frame
-        navigateBtn.titleLabel?.text = ""
-        navigateBtn.addTarget(self, action: #selector(tabNavigate), for: .touchUpInside)
-        self.view.addSubview(navigateBtn)
-        
-        restNameV.frame = CGRect(x: UIScreen.main.bounds.midX - UIScreen.WIDTH / 3, y: restImgV.frame.maxY + 25, width: UIScreen.WIDTH * 2 / 3, height: 50)
-        restNameV.backgroundColor = .green
-        restNameV.layer.cornerRadius = 25
+        restNameV.frame = CGRect(x: UIScreen.main.bounds.midX - UIScreen.WIDTH * 2 / 5, y: restImgV.frame.maxY + 25, width: UIScreen.WIDTH * 4 / 5, height: 80)
         self.view.addSubview(restNameV)
+        
+        restNameImgV.frame = CGRect(x: 0, y: -5, width: restNameV.frame.width, height: restNameV.frame.height)
+        restNameImgV.image = UIImage(named: "restBtn")
+        self.restNameV.addSubview(restNameImgV)
         
         restNameLb.frame = restNameV.frame
         restNameLb.text = "目前無餐廳"
@@ -97,13 +106,19 @@ class ViewController: UIViewController {
         restNameLb.adjustsFontSizeToFitWidth = true
         self.view.addSubview(restNameLb)
         
-        diceBtn.frame = CGRect(x: UIScreen.main.bounds.midX - UIScreen.WIDTH / 6, y: restNameV.frame.maxY + 25 , width: UIScreen.WIDTH / 3, height: 50)
+        diceBtn.frame = CGRect(x: restNameV.frame.minX, y: restNameV.frame.maxY + 25 , width: UIScreen.WIDTH / 3, height: 80)
         diceBtn.setTitle("擲骰", for: .normal)
         diceBtn.setTitleColor(.black, for: .normal)
-        diceBtn.backgroundColor = .green
-        diceBtn.layer.cornerRadius = 25
+        diceBtn.setBackgroundImage(UIImage(named: "diceBtn"), for: .normal)
         diceBtn.addTarget(self, action: #selector(tabDice), for: .touchUpInside)
         self.view.addSubview(diceBtn)
+        
+        navigateBtn.frame = CGRect(x: diceBtn.frame.maxX + 20 , y: diceBtn.frame.minY, width: restNameV.frame.width - diceBtn.frame.width - 20, height: diceBtn.frame.height)
+        navigateBtn.setTitle("導航", for: .normal)
+        navigateBtn.setTitleColor(.black, for: .normal)
+        navigateBtn.setBackgroundImage(UIImage(named: "navigateBtn"), for: .normal)
+        navigateBtn.addTarget(self, action: #selector(tabNavigate), for: .touchUpInside)
+        self.view.addSubview(navigateBtn)
         
         loadRollV.frame = CGRect(x: UIScreen.main.bounds.midX - 50, y: UIScreen.main.bounds.midY - 50, width: 100, height: 100)
         loadRollV.layer.cornerRadius = 25
@@ -209,6 +224,7 @@ class ViewController: UIViewController {
             restNameLb.text = arrRestaurant[ranInt].name
             restImgV.kf.setImage(with: photoUrl)
             restImgV.contentMode = .scaleToFill
+            restImgV.layer.masksToBounds = true
             tag = true
             
             if saveItemArr.count > 19 {

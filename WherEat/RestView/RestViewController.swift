@@ -17,11 +17,12 @@ class RestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.isNavigationBarHidden = false
         mainTableview.delegate = self
         mainTableview.dataSource = self
         
         mainTableview.register(UINib(nibName: "RestTableViewCell", bundle: nil), forCellReuseIdentifier: "RestTableViewCell")
-        
+        setBackBtn()
         navigationItem.title = "餐廳列表"
         
     }

@@ -19,12 +19,13 @@ class RestMapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
         mainMap.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         mainMap.showsUserLocation = true
         setAnnotation()
-        
+        setBackBtn()
         navigationItem.title = "\(name)"
     }
    

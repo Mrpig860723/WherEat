@@ -18,12 +18,14 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.isNavigationBarHidden = false
+        
         mainTableView.delegate = self
         mainTableView.dataSource = self
+        mainTableView.register(UINib(nibName: "RecordTableViewCell", bundle: nil), forCellReuseIdentifier: "RecordTableViewCell")
         
         navigationItem.title = "餐廳紀錄"
-
-        mainTableView.register(UINib(nibName: "RecordTableViewCell", bundle: nil), forCellReuseIdentifier: "RecordTableViewCell")
+        setBackBtn()
         
         if UserDefaults.standard.value(forKey: "Item") != nil {
             do {
@@ -39,6 +41,7 @@ class RecordViewController: UIViewController {
         
         mainTableView.frame = CGRect(x: 0, y: 0, width: UIScreen.WIDTH, height: UIScreen.HEIGHT)
         self.view.addSubview(mainTableView)
+        mainTableView.separatorInset = .zero
         
         noDataV.frame = CGRect(x: 0, y: 0, width: UIScreen.WIDTH, height: UIScreen.HEIGHT)
         noDataV.backgroundColor = .white
@@ -62,7 +65,7 @@ class RecordViewController: UIViewController {
 
 extension RecordViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 60
     }
 }
 
@@ -75,9 +78,10 @@ extension RecordViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecordTableViewCell", for: indexPath) as! RecordTableViewCell
         cell.selectionStyle = .none
         cell.restImgV.kf.setImage(with: URL(string: saveItemArr[indexPath.row].photo))
-        cell.restImgV.layer.cornerRadius = 20
+        cell.restImgV.layer.cornerRadius = 25
         cell.restImgV.contentMode = .scaleAspectFill
         cell.restNameLb.text = saveItemArr[indexPath.row].name
+        cell.restNameLb.adjustsFontSizeToFitWidth = true
         cell.dateLb.text = saveItemArr[indexPath.row].date
         return cell
     }
