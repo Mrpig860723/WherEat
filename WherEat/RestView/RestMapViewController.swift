@@ -46,19 +46,15 @@ class RestMapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        locationManager.startUpdatingLocation()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         locationManager.stopUpdatingLocation()
     }
-
-    
 }
 
 extension RestMapViewController: MKMapViewDelegate {
-    
 }
 
 extension RestMapViewController: CLLocationManagerDelegate {
@@ -68,11 +64,9 @@ extension RestMapViewController: CLLocationManagerDelegate {
               locations[0] as CLLocation
         //總縮放範圍
         let range:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-
         //自身
         let myLocation = currentLocation.coordinate
         let appearRegion:MKCoordinateRegion = MKCoordinateRegion(center: myLocation, span: range)
-        
         //在地圖上顯示
         mainMap.setRegion(appearRegion, animated: true)
     }

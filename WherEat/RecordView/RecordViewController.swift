@@ -30,6 +30,7 @@ class RecordViewController: UIViewController {
         if UserDefaults.standard.value(forKey: "Item") != nil {
             do {
                 saveItemArr = try UserDefaults.standard.getObject(forKey: "Item", castTo: [SaveItemVO].self)
+                haveRecord()
             } catch {
                 print(error.localizedDescription)
             }
@@ -47,8 +48,8 @@ class RecordViewController: UIViewController {
         noDataV.backgroundColor = .white
         self.view.addSubview(noDataV)
         
-        noDataImgV.frame = CGRect(x: UIScreen.main.bounds.midX - 50, y: UIScreen.main.bounds.midY - 50, width: 100, height: 100)
-        noDataImgV.image = UIImage(named: "")
+        noDataImgV.frame = CGRect(x: UIScreen.main.bounds.midX - 150, y: UIScreen.main.bounds.midY - 150, width: 300, height: 300)
+        noDataImgV.image = UIImage(named: "NoData")
         noDataV.addSubview(noDataImgV)
         
         
@@ -59,8 +60,13 @@ class RecordViewController: UIViewController {
         }
     }
 
-    
-
+    func haveRecord() {
+        if saveItemArr.count == 0 {
+            mainTableView.isHidden = true
+        }else {
+            mainTableView.isHidden = false
+        }
+    }
 }
 
 extension RecordViewController: UITableViewDelegate {
@@ -85,6 +91,4 @@ extension RecordViewController: UITableViewDataSource {
         cell.dateLb.text = saveItemArr[indexPath.row].date
         return cell
     }
-
-
 }

@@ -15,7 +15,7 @@ protocol ObjectSavable {
 }
 
 class ViewController: UIViewController {
-
+    
     var importRestBtn = UIButton()
     var recordBtn = UIButton()
     var restListBtn = UIButton()
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         restImgV.contentMode = .scaleAspectFit
-        
+        askPrivacy()
         if UserDefaults.standard.value(forKey: "Item") != nil {
             do {
                 saveItemArr = try UserDefaults.standard.getObject(forKey: "Item", castTo: [SaveItemVO].self)
@@ -52,15 +52,13 @@ class ViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-        
-        
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         navigationController?.isNavigationBarHidden = true
-//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainBackGround")!)
+        //        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainBackGround")!)
         backGroundImg.frame = CGRect(x: 0, y: 0, width: UIScreen.WIDTH, height: UIScreen.HEIGHT)
         backGroundImg.image = UIImage(named: "mainBackGround")
         self.view.addSubview(backGroundImg)
@@ -75,12 +73,20 @@ class ViewController: UIViewController {
         recordBtn.frame = CGRect(x: 0, y: UIScreen.SIZE.height - 100 , width: 100, height: 50)
         recordBtn.setTitle("紀錄", for: .normal)
         recordBtn.setTitleColor(.red, for: .normal)
+        recordBtn.backgroundColor = .green
+        recordBtn.layer.cornerRadius = 15
+        recordBtn.layer.borderColor = UIColor(named: "Darkgreen")?.cgColor
+        recordBtn.layer.borderWidth = 3
         recordBtn.addTarget(self, action: #selector(tabRecord), for: .touchUpInside)
         self.view.addSubview(recordBtn)
         
         restListBtn.frame = CGRect(x: UIScreen.SIZE.width - 100, y: UIScreen.SIZE.height - 100, width: 100, height: 50)
         restListBtn.setTitle("餐廳列表", for: .normal)
         restListBtn.setTitleColor(.black, for: .normal)
+        restListBtn.backgroundColor = .green
+        restListBtn.layer.cornerRadius = 15
+        restListBtn.layer.borderColor = UIColor(named: "Darkgreen")?.cgColor
+        restListBtn.layer.borderWidth = 3
         restListBtn.addTarget(self, action: #selector(tabRestList), for: .touchUpInside)
         self.view.addSubview(restListBtn)
         
@@ -135,38 +141,10 @@ class ViewController: UIViewController {
         loadV.isHidden = true
         self.view.addSubview(loadV)
         
-        
-        
-        
-        
         if tag {
             restNameLb.text = arrRestaurant[ranInt].name
             restImgV.kf.setImage(with: photoUrl)
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // 首次使用 向使用者詢問定位自身位置權限
-           if CLLocationManager.authorizationStatus()
-                == .notDetermined {
-               // 取得定位服務授權
-               locationManager!.requestWhenInUseAuthorization()
-
-               // 開始定位自身位置
-               locationManager!.startUpdatingLocation()
-           }
-           // 使用者已經拒絕定位自身位置權限
-           else if CLLocationManager.authorizationStatus()
-                    == .denied {
-               // 提示可至[設定]中開啟權限
-               AlertUtil.showMessage(vc: self, title: "定位權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟", okTitle: "確認", okHandler: nil)
-               // 使用者已經同意定位自身位置權限
-           }else if CLLocationManager.authorizationStatus()
-                    == .authorizedWhenInUse {
-               // 開始定位自身位置
-               locationManager!.startUpdatingLocation()
-           }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -175,20 +153,36 @@ class ViewController: UIViewController {
     }
     
     @objc func tabImport() {
-        
-        AlertUtil.showMessage(message: "匯入餐廳會刷新餐廳列表資訊，確定匯入嗎？") { _ in
-            self.loadV.isHidden = false
-            self.activityV.startAnimating()
-            self.datamgr?.restaurantList(completedHandle: { completeResult in
-                self.arrRestaurant = completeResult
-                print(self.arrRestaurant)
-                self.loadV.isHidden = true
-                self.activityV.stopAnimating()
-                AlertUtil.showMessage(message: "餐廳匯入成功")
-            }, failHandle: { errMsg in
-                print(errMsg)
-            })
-        } cancelHandler: {_ in }
+        if CLLocationManager.authorizationStatus()
+            == .denied || CLLocationManager.authorizationStatus()
+            == .notDetermined{
+            AlertUtil.showMessage(vc: self, title: "定位權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟", okTitle: "前往", okHandler: { _ in
+                let url = URL(string: UIApplication.openSettingsURLString)
+                if let url = url, UIApplication.shared.canOpenURL(url) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+                            print("跳至設定")
+                        })
+                    } else {
+                        UIApplication.shared.openURL(url)
+                    }
+                }
+            }, cancelTitle: "取消", cancelHandler: nil)
+        }else {
+            AlertUtil.showMessage(message: "匯入餐廳會刷新餐廳列表資訊，確定匯入嗎？") { _ in
+                self.loadV.isHidden = false
+                self.activityV.startAnimating()
+                self.datamgr?.restaurantList(completedHandle: { completeResult in
+                    self.arrRestaurant = completeResult
+                    print(self.arrRestaurant)
+                    self.loadV.isHidden = true
+                    self.activityV.stopAnimating()
+                    AlertUtil.showMessage(message: "餐廳匯入成功")
+                }, failHandle: { errMsg in
+                    print(errMsg)
+                })
+            } cancelHandler: {_ in }
+        }
     }
     
     @objc func tabRecord() {
@@ -203,21 +197,24 @@ class ViewController: UIViewController {
     }
     
     @objc func tabNavigate() {
-        if arrRestaurant.isEmpty {
-            AlertUtil.showMessage(vc: self, message: "目前無餐廳資料", okHandler: nil)
+        
+        if arrRestaurant.isEmpty{
+            AlertUtil.showMessage(vc: self, message: "目前無餐廳資料，請匯入餐廳", okHandler: nil)
+        }else if restNameLb.text == "目前無餐廳"{
+            AlertUtil.showMessage(vc: self, message: "目前無骰出餐廳，請先擲骰", okHandler: nil)
         }else {
             if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
                 UIApplication.shared.openURL(URL(string:
                                                     "comgooglemaps://?daddr=\(arrRestaurant[ranInt].lat),\(arrRestaurant[ranInt].lng)&directionsmode=walking")!)
             } else {
-              print("Can't use comgooglemaps://");
+                print("Can't use comgooglemaps://");
             }
         }
     }
     
     @objc func tabDice() {
         if arrRestaurant.isEmpty {
-            AlertUtil.showMessage(vc: self, message: "目前無餐廳資料", okHandler: nil)
+            AlertUtil.showMessage(vc: self, message: "目前無餐廳資料，請匯入餐廳", okHandler: nil)
         }else {
             ranInt = Int.random(in: 0 ... arrRestaurant.count - 1)
             photoUrl = URL(string: datamgr?.returnPhoto(photo: arrRestaurant[ranInt].photo) ?? "")
@@ -244,7 +241,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     func getDate() -> String{
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -252,14 +249,48 @@ class ViewController: UIViewController {
         dateFormatter.dateFormat = "YYYY/MM/dd HH:mm:ss"
         return dateFormatter.string(from: date)
     }
+    
+    func askPrivacy() {
+        // 首次使用 向使用者詢問定位自身位置權限
+        if CLLocationManager.authorizationStatus()
+            == .notDetermined {
+            // 取得定位服務授權
+            locationManager!.requestWhenInUseAuthorization()
+            
+            // 開始定位自身位置
+            locationManager!.startUpdatingLocation()
+        }
+        // 使用者已經拒絕定位自身位置權限
+        else if CLLocationManager.authorizationStatus()
+                    == .denied {
+            // 提示可至[設定]中開啟權限
+            AlertUtil.showMessage(vc: self, title: "定位權限已關閉", message: "如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟", okTitle: "前往", okHandler: { _ in
+                let url = URL(string: UIApplication.openSettingsURLString)
+                if let url = url, UIApplication.shared.canOpenURL(url) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+                            print("跳至設定")
+                        })
+                    } else {
+                        UIApplication.shared.openURL(url)
+                    }
+                }
+            }, cancelTitle: "取消", cancelHandler: nil)
+            // 使用者已經同意定位自身位置權限
+        }else if CLLocationManager.authorizationStatus()
+                    == .authorizedWhenInUse {
+            // 開始定位自身位置
+            locationManager!.startUpdatingLocation()
+        }
+    }
 }
 
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
-      didUpdateLocations locations: [CLLocation]) {
+                         didUpdateLocations locations: [CLLocation]) {
         let currentLocation :CLLocation =
-              locations[0] as CLLocation
-     
+        locations[0] as CLLocation
+        
         //自身
         let myLocation = currentLocation.coordinate
         datamgr?.location = "\(myLocation.latitude),\(myLocation.longitude)"

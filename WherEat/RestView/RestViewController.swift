@@ -20,11 +20,9 @@ class RestViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         mainTableview.delegate = self
         mainTableview.dataSource = self
-        
         mainTableview.register(UINib(nibName: "RestTableViewCell", bundle: nil), forCellReuseIdentifier: "RestTableViewCell")
         setBackBtn()
         navigationItem.title = "餐廳列表"
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -36,10 +34,9 @@ class RestViewController: UIViewController {
         noDataV.backgroundColor = .white
         self.view.addSubview(noDataV)
         
-        noDataImgV.frame = CGRect(x: UIScreen.main.bounds.midX - 50, y: UIScreen.main.bounds.midY - 50, width: 100, height: 100)
-        noDataImgV.image = UIImage(named: "star")
+        noDataImgV.frame = CGRect(x: UIScreen.main.bounds.midX - 150, y: UIScreen.main.bounds.midY - 150, width: 300, height: 300)
+        noDataImgV.image = UIImage(named: "NoData")
         noDataV.addSubview(noDataImgV)
-        
         
         if arrRestaurant.count == 0 {
             noDataV.isHidden = false
@@ -47,7 +44,6 @@ class RestViewController: UIViewController {
             noDataV.isHidden = true
         }
     }
-
 }
 
 extension RestViewController: UITableViewDelegate {
@@ -76,6 +72,4 @@ extension RestViewController: UITableViewDataSource {
         cell.vicinityLb.text = arrRestaurant[indexPath.row].vicinity
         return cell
     }
-    
-    
 }
