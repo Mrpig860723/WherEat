@@ -27,6 +27,8 @@ class RestMapViewController: UIViewController {
         setAnnotation()
         setBackBtn()
         navigationItem.title = "\(name)"
+        overrideUserInterfaceStyle = .light
+        navigationController?.overrideUserInterfaceStyle = .light
     }
    
     

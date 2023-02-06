@@ -23,6 +23,7 @@ class RestViewController: UIViewController {
         mainTableview.register(UINib(nibName: "RestTableViewCell", bundle: nil), forCellReuseIdentifier: "RestTableViewCell")
         setBackBtn()
         navigationItem.title = "餐廳列表"
+        overrideUserInterfaceStyle = .light
     }
     
     override func viewDidLayoutSubviews() {

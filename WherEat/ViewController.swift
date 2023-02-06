@@ -43,6 +43,8 @@ class ViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         restImgV.contentMode = .scaleAspectFit
+        overrideUserInterfaceStyle = .light
+        navigationController?.overrideUserInterfaceStyle = .light
         askPrivacy()
         if UserDefaults.standard.value(forKey: "Item") != nil {
             do {

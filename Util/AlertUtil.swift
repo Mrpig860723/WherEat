@@ -112,6 +112,7 @@ public final class AlertUtil {
                                         okAction: UIAlertAction?) -> Void {
         DispatchQueue.main.async{
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.overrideUserInterfaceStyle = .light
             if (cancelAction != nil) {
                 alertController.addAction(cancelAction!)
             }
@@ -125,6 +126,7 @@ public final class AlertUtil {
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController
             }
+            topController.overrideUserInterfaceStyle = .light
             showMessage(vc: topController, message: message, okHandler: nil)
         }
     }
@@ -138,12 +140,14 @@ public final class AlertUtil {
             }
             let cancelAction = UIAlertAction(title: strBtnCancel, style: .cancel, handler: cancelHandler)
             let okAction = UIAlertAction(title: strBtnOK, style: .default, handler: okHandler)
+            topController.overrideUserInterfaceStyle = .light
             showMessage(vc: topController, title: nil, message: message, cancelAction: cancelAction, okAction: okAction)
         }
     }
 
     public static func showMessage(vc: UIViewController,
                                    message: String) -> Void {
+        vc.overrideUserInterfaceStyle = .light
         showMessage(vc: vc, message: message, okHandler: nil)
     }
     
@@ -154,6 +158,7 @@ public final class AlertUtil {
                                    cancelHandler: ((UIAlertAction?) -> Void)?) {
         let cancelAction = UIAlertAction(title: strBtnCancel, style: .cancel, handler: cancelHandler)
         let okAction = UIAlertAction(title: strBtnOK, style: .default, handler: okHandler)
+        vc.overrideUserInterfaceStyle = .light
         showMessage(vc: vc, title: title, message: message, cancelAction: cancelAction, okAction: okAction)
     }
 
@@ -161,6 +166,7 @@ public final class AlertUtil {
                                    message: String,
                                    okHandler: ((UIAlertAction?) -> Void)?) {
         let okAction = UIAlertAction(title: strBtnOK, style: .default, handler: okHandler)
+        vc.overrideUserInterfaceStyle = .light
         showMessage(vc: vc, title: nil, message: message, cancelAction: nil, okAction: okAction)
     }
 
@@ -170,6 +176,7 @@ public final class AlertUtil {
                                    okTitle: String,
                                    okHandler: ((UIAlertAction?) -> Void)?) {
         let okAction = UIAlertAction(title: okTitle, style: .default, handler: okHandler)
+        vc.overrideUserInterfaceStyle = .light
         showMessage(vc: vc, title: title, message: message, cancelAction: nil, okAction: okAction)
     }
 
@@ -182,6 +189,7 @@ public final class AlertUtil {
                                    cancelHandler: ((UIAlertAction?) -> Void)?) {
         let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler)
         let okAction = UIAlertAction(title: okTitle, style: .default, handler: okHandler)
+        vc.overrideUserInterfaceStyle = .light
         showMessage(vc: vc, title: title, message: message, cancelAction: cancelAction, okAction: okAction)
     }
     

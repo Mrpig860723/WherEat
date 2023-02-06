@@ -19,7 +19,8 @@ class RecordViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = false
-        
+        overrideUserInterfaceStyle = .light
+        navigationController?.overrideUserInterfaceStyle = .light
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.register(UINib(nibName: "RecordTableViewCell", bundle: nil), forCellReuseIdentifier: "RecordTableViewCell")
